@@ -1,4 +1,4 @@
-package abraham.com.myomdb.ui;
+package abraham.com.myomdb.ui.main;
 
 import abraham.com.myomdb.model.SearchRepository;
 import abraham.com.myomdb.model.SearchResponse;
@@ -21,17 +21,17 @@ public class MainPresenter implements MainContract.MainAction {
         SearchRepository.Search(movieTitle, new RemoteCallback.Load<SearchResponse>() {
             @Override
             public void onDataLoaded(SearchResponse data) {
-                view.onDataLoaded(data.toString());
+                view.onDataLoaded(data);
             }
 
             @Override
             public void onFailed() {
-                view.onDataLoaded("empty");
+                view.showError();
             }
 
             @Override
             public void onDataNotAvailable(String message) {
-                view.onDataLoaded(message);
+                view.showEmpty(message);
             }
         });
     }

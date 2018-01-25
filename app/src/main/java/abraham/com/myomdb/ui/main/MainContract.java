@@ -1,4 +1,4 @@
-package abraham.com.myomdb.ui;
+package abraham.com.myomdb.ui.main;
 
 import abraham.com.myomdb.model.SearchResponse;
 
@@ -9,7 +9,9 @@ import abraham.com.myomdb.model.SearchResponse;
 public class MainContract {
     interface MainView{
         void loadData();
-        void onDataLoaded(String response);
+        void onDataLoaded(SearchResponse response);
+        void showError();
+        void showEmpty(String message);
     }
     interface MainAction{
         void searchMovie(String movieTitle);

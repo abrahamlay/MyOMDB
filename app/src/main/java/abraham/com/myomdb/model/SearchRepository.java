@@ -23,12 +23,14 @@ public class SearchRepository {
                 if(response.isSuccessful()) {
                     callback.onDataLoaded(response.body());
 
+                    int statusCode  = response.code();
+                    if (statusCode==200)callback.onDataNotAvailable("Data Not Found");
                 }else {
                     int statusCode  = response.code();
                     // handle request errors depending on status code
 //                    callback.onDataNotAvailable(response.message());
 //                    callback.onDataNotAvailable(String.valueOf(statusCode));
-                    callback.onDataNotAvailable(call.request().url().toString());
+                    if (statusCode==200)callback.onDataNotAvailable(call.request().url().toString());
                 }
             }
 
